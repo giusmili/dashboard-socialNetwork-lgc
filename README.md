@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Monitoring Réseaux Sociaux — La Grande Classe
 
-## Getting Started
+Dashboard de suivi des performances sociales de **La Grande Classe** (@lagrandeclasse) sur LinkedIn, TikTok et Instagram. Visualisation des abonnés, portée, variations et tendances sur 30 jours.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Technologies
+
+![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Recharts](https://img.shields.io/badge/Recharts-3.8-22B5BF?style=flat-square)
+![Lucide](https://img.shields.io/badge/Lucide_React-1.17-F56565?style=flat-square)
+
+---
+
+## Arborescence
+
+```
+📁 39-projet-lgc-monitoring-social-network/
+├── 📁 app/
+│   ├── 📄 layout.tsx
+│   ├── 📄 page.tsx
+│   └── 📄 globals.css
+├── 📁 components/
+│   └── 📄 lgc-social-dashboard.tsx
+├── 📁 public/
+│   └── 📁 asset/
+│       └── 🖼️  logo_lgc.png
+├── 📁 cdc/
+│   └── 📄 cahier-des-charges-social-network-share.docx
+├── 📄 .gitignore
+├── 📄 next.config.ts
+├── 📄 tsconfig.json
+├── 📄 package.json
+└── 📄 README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Lancer le projet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build     # build de production
+npm run lint      # ESLint
+npx tsc --noEmit  # vérification TypeScript
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Auteur
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Giuseppe Militello**
+LGC - Recherche & Développement

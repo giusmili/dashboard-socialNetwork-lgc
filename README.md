@@ -1,6 +1,6 @@
-# Monitoring Réseaux Sociaux — La Grande Classe
+# Monitoring Réseaux Sociaux La Grande Classe
 
-Dashboard de suivi des performances sociales de **La Grande Classe** (@lagrandeclasse) sur LinkedIn, TikTok et Instagram. Visualisation des abonnés, portée, variations et tendances sur 30 jours.
+Dashboard de suivi des performances sociales de **La Grande Classe** sur LinkedIn, TikTok et Instagram. Visualisation des abonnés, portée, variations et tendances sur 30 jours.
 
 ---
 
@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
+Ouvrir ```http://localhost:3000``` dans le navigateur.
 
 ```bash
 npm run build     # build de production

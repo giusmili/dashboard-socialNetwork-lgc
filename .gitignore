@@ -30,3 +30,6 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+# données générées (historique TikTok pour le calcul des tendances)
+data/*.json

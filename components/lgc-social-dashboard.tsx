@@ -107,40 +107,9 @@ const NETWORKS: Record<NetworkId, NetworkMeta> = {
      return (await res.json()) as SocialStats;
    ──────────────────────────────────────────────────────────── */
 
-function makeSeries(base: number, dailyGrowth: number, volatility: number): SeriesPoint[] {
-  const days: SeriesPoint[] = [];
-  let v = base;
-  for (let i = 29; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    v += dailyGrowth + (Math.random() - 0.5) * volatility;
-    days.push({
-      date: d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit" }),
-      value: Math.round(v),
-    });
-  }
-  return days;
-}
-
 async function fetchSocialStats(): Promise<SocialStats> {
-  await new Promise((r) => setTimeout(r, 600));
-  return {
-    linkedin: {
-      followers: 4820, followersDelta: 3.2,
-      reach: 38400, reachDelta: 12.5, reachLabel: "Impressions",
-      followersSeries: makeSeries(4600, 7, 14),
-    },
-    tiktok: {
-      followers: 12750, followersDelta: 8.9,
-      reach: 284000, reachDelta: 22.1, reachLabel: "Vues",
-      followersSeries: makeSeries(11800, 32, 60),
-    },
-    instagram: {
-      followers: 6340, followersDelta: -1.4,
-      reach: 22800, reachDelta: 5.8, reachLabel: "Reach",
-      followersSeries: makeSeries(6400, -3, 18),
-    },
-  };
+  const res = await fetch("/api/social-stats");
+  return (await res.json()) as SocialStats;
 }
 
 /* ──────────────────────────── UI ──────────────────────────── */
@@ -254,10 +223,12 @@ function ComparativeChart({ stats }: { stats: SocialStats }) {
 }
 
 function TotalsBar({ stats }: { stats: SocialStats }) {
-  const totalFollowers = (Object.keys(stats) as NetworkId[])
-    .reduce((sum, id) => sum + stats[id].followers, 0);
-  const totalReach = (Object.keys(stats) as NetworkId[])
-    .reduce((sum, id) => sum + stats[id].reach, 0);
+  const networkIds = Object.keys(stats) as NetworkId[];
+  const totalFollowers = networkIds.reduce((sum, id) => sum + stats[id].followers, 0);
+  const totalReach = networkIds.reduce((sum, id) => sum + stats[id].reach, 0);
+  const growingNetwork = networkIds.reduce((best, id) =>
+    stats[id].followersDelta > stats[best].followersDelta ? id : best
+  );
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -277,8 +248,8 @@ function TotalsBar({ stats }: { stats: SocialStats }) {
         <div className="flex items-center gap-2 text-slate-500">
           <Heart size={16} /><span className="text-xs uppercase tracking-wide">Réseau en croissance</span>
         </div>
-        <div className="mt-2 text-3xl font-bold text-slate-900">TikTok</div>
-        <Delta value={stats.tiktok.followersDelta} />
+        <div className="mt-2 text-3xl font-bold text-slate-900">{NETWORKS[growingNetwork].name}</div>
+        <Delta value={stats[growingNetwork].followersDelta} />
       </div>
     </div>
   );
